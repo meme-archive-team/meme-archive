@@ -1,0 +1,15 @@
+[submodule "meme-archive-config"]
+	path = meme-archive-config
+	url = https://github.com/meme-archive-team/meme-archive-config.git
+[submodule "eureka-server"]
+	path = eureka-server
+	url = https://github.com/meme-archive-team/eureka-server.git
+[submodule "wiki-service"]
+	path = wiki-service
+	url = https://github.com/meme-archive-team/wiki-service.git
+[submodule "recommend-service"]
+	path = recommend-service
+	url = https://github.com/meme-archive-team/recommend-service.git
+[submodule "meme-archive-web"]
+	path = meme-archive-web
+	url = https://github.com/meme-archive-team/meme-archive-web.git

@@ -13,3 +13,6 @@
 [submodule "meme-archive-web"]
 	path = meme-archive-web
 	url = https://github.com/meme-archive-team/meme-archive-web.git
+[submodule "config-repo"]
+	path = config-repo
+	url = https://github.com/meme-archive-team/config-repo.git

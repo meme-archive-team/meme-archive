@@ -1,0 +1,30 @@
+version: '2'
+services:
+  meme-archive-config:
+    image: meme-archive-config:DEV.v0.2
+    ports:
+      - "8888:8888"
+    environment:
+      ENCRYPT_KEY: "IMSYMMETRIC"
+
+  meme-archive-spring-db:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: meme-archive
+      MYSQL_USER: sa
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+
+  meme-archive-spring:
+    image: meme-archive-spring:DEV.v0.2
+    ports:
+      - "8080:8080"
+    environment:
+      PROFILE: "default"
+      CONFIGSERVER_URI: "http://meme-archive-config:8888"
+      CONFIGSERVER_PORT: "8888"
+      DATABASESERVER_PORT: "3306"
+      ENCRYPT_KEY: "IMSYMMETRIC"
+

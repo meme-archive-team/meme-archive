@@ -1,17 +1,5 @@
 version: "2"
 services:
-  meme-archive-config:
-    image: ghcr.io/meme-archive-team/meme-archive-config:DEV.v0.3
-    ports:
-      - "8888:8888"
-    environment:
-      ENCRYPT_KEY: "IMSYMMETRIC"
-
-  eureka-server:
-    image: ghcr.io/meme-archive-team/eureka-server:DEV.v0.3
-    ports:
-      - "8761:8761"
-
   wiki-db:
     image: mysql:5.7
     ports:
@@ -25,12 +13,26 @@ services:
   recommend-db:
     image: mysql:5.7
     ports:
-      - "3307:3307"
+      - "3307:3306"
     environment:
       MYSQL_DATABASE: meme-archive
       MYSQL_USER: sa
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
+
+  meme-archive-config:
+    image: ghcr.io/meme-archive-team/meme-archive-config:DEV.v0.3
+    ports:
+      - "8888:8888"
+    environment:
+      ENCRYPT_KEY: "IMSYMMETRIC"
+      # PROFILE: "native"
+      PROFILE: "default"
+
+  eureka-server:
+    image: ghcr.io/meme-archive-team/eureka-server:DEV.v0.3
+    ports:
+      - "8761:8761"
 
   wiki-service:
     image: ghcr.io/meme-archive-team/wiki-service:DEV.v0.3
@@ -40,9 +42,9 @@ services:
       PROFILE: "default"
       SERVER_PORT: "8080"
       CONFIGSERVER_URI: "http://meme-archive-config:8888"
+      CONFIGSERVER_PORT: "8888"
       EUREKASERVER_URI: "http://eureka-server:8761/eureka/"
       EUREKASERVER_PORT: "8761"
-      CONFIGSERVER_PORT: "8888"
       DATABASESERVER_PORT: "3306"
       ENCRYPT_KEY: "IMSYMMETRIC"
 
@@ -54,8 +56,8 @@ services:
       PROFILE: "default"
       SERVER_PORT: "8081"
       CONFIGSERVER_URI: "http://meme-archive-config:8888"
+      CONFIGSERVER_PORT: "8888"
       EUREKASERVER_URI: "http://eureka-server:8761/eureka/"
       EUREKASERVER_PORT: "8761"
-      CONFIGSERVER_PORT: "8888"
-      DATABASESERVER_PORT: "3307"
+      DATABASESERVER_PORT: "3306"
       ENCRYPT_KEY: "IMSYMMETRIC"
